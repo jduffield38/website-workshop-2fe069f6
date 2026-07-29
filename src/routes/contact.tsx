@@ -38,6 +38,16 @@ function ContactPage() {
 
       <section className="py-16">
         <div className="container mx-auto px-5 max-w-2xl">
+          <div className="mb-6 rounded-xl border border-border bg-secondary/50 p-4 flex items-center gap-3 text-sm">
+            <AtSign className="h-5 w-5 text-primary shrink-0" />
+            <p className="text-muted-foreground">
+              Prefer email? Reach us directly at{" "}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary font-semibold hover:underline">
+                {CONTACT_EMAIL}
+              </a>
+              .
+            </p>
+          </div>
           <form
             name="contact"
             method="POST"
@@ -45,6 +55,7 @@ function ContactPage() {
             netlify-honeypot="bot-field"
             className="space-y-4 bg-card p-6 rounded-xl border border-border"
           >
+
             <input type="hidden" name="form-name" value="contact" />
             <div className="hidden">
               <label>
