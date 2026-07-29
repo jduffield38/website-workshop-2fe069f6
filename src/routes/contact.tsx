@@ -1,5 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail } from "lucide-react";
+import { Mail, AtSign } from "lucide-react";
+
+const CONTACT_EMAIL = "hello@vibeedge.com";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
