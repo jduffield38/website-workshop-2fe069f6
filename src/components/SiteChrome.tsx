@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { apps, type AppInfo } from "../lib/apps";
 import { AppStoreBadge } from "./AppStoreBadge";
 
@@ -13,11 +13,13 @@ export function GameHero({
   title,
   tagline,
   appStoreUrl,
+  webUrl,
 }: {
   icon: string;
   title: string;
   tagline: string;
   appStoreUrl?: string;
+  webUrl?: string;
 }) {
   return (
     <section className="bg-[color:var(--brand-dark)] text-white pt-8 pb-16">
@@ -29,15 +31,24 @@ export function GameHero({
         />
         <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">{title}</h1>
         <p className="text-lg text-white/80 mb-6">{tagline}</p>
-        {appStoreUrl ? (
-          <div className="flex justify-center">
-            <AppStoreBadge href={appStoreUrl} />
-          </div>
-        ) : (
-          <span className="inline-block rounded-full border border-white/30 px-4 py-1.5 text-sm text-white/70">
-            Coming soon to the App Store
-          </span>
-        )}
+        <div className="flex flex-wrap justify-center gap-3">
+          {webUrl && (
+            <a
+              href={webUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 transition"
+            >
+              Launch web app <ExternalLink className="h-4 w-4" />
+            </a>
+          )}
+          {appStoreUrl && <AppStoreBadge href={appStoreUrl} />}
+          {!webUrl && !appStoreUrl && (
+            <span className="inline-block rounded-full border border-white/30 px-4 py-1.5 text-sm text-white/70">
+              Coming soon to the App Store
+            </span>
+          )}
+        </div>
       </div>
     </section>
   );
