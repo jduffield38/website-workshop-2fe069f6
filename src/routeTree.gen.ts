@@ -13,6 +13,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AppsRouteImport } from './routes/apps'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GamesVocabflexRouteImport } from './routes/games/vocabflex'
 import { Route as GamesReadflexRouteImport } from './routes/games/readflex'
 import { Route as GamesPandANalogiesRouteImport } from './routes/games/pand-a-nalogies'
 import { Route as GamesKpopWordWarriorRouteImport } from './routes/games/kpop-word-warrior'
@@ -37,6 +38,11 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesVocabflexRoute = GamesVocabflexRouteImport.update({
+  id: '/games/vocabflex',
+  path: '/games/vocabflex',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamesReadflexRoute = GamesReadflexRouteImport.update({
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
+  '/games/vocabflex': typeof GamesVocabflexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
+  '/games/vocabflex': typeof GamesVocabflexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
+  '/games/vocabflex': typeof GamesVocabflexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
+    | '/games/vocabflex'
     | '/api/public/contact'
     | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
+    | '/games/vocabflex'
     | '/api/public/contact'
     | '/lovable/email/transactional/preview'
   id:
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
+    | '/games/vocabflex'
     | '/api/public/contact'
     | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   GamesKpopWordWarriorRoute: typeof GamesKpopWordWarriorRoute
   GamesPandANalogiesRoute: typeof GamesPandANalogiesRoute
   GamesReadflexRoute: typeof GamesReadflexRoute
+  GamesVocabflexRoute: typeof GamesVocabflexRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
@@ -176,6 +189,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games/vocabflex': {
+      id: '/games/vocabflex'
+      path: '/games/vocabflex'
+      fullPath: '/games/vocabflex'
+      preLoaderRoute: typeof GamesVocabflexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/games/readflex': {
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   GamesKpopWordWarriorRoute: GamesKpopWordWarriorRoute,
   GamesPandANalogiesRoute: GamesPandANalogiesRoute,
   GamesReadflexRoute: GamesReadflexRoute,
+  GamesVocabflexRoute: GamesVocabflexRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }

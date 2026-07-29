@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ExternalLink } from "lucide-react";
 import logo from "../assets/VElogo.png";
 
-const links = [
+type NavLink =
+  | { to: "/" | "/apps" | "/about" | "/contact"; label: string; external?: false }
+  | { href: string; label: string; external: true };
+
+const links: NavLink[] = [
   { to: "/", label: "Home" },
   { to: "/apps", label: "Apps" },
+  { href: "https://vocabflex.vibeedge.app", label: "VocabFlex", external: true },
+  { href: "https://readflex.vibeedge.app", label: "ReadFlex", external: true },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
