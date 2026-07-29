@@ -10,33 +10,76 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GamesReadflexRouteImport } from './routes/games/readflex'
+import { Route as GamesPandANalogiesRouteImport } from './routes/games/pand-a-nalogies'
+import { Route as GamesKpopWordWarriorRouteImport } from './routes/games/kpop-word-warrior'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GamesReadflexRoute = GamesReadflexRouteImport.update({
+  id: '/games/readflex',
+  path: '/games/readflex',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesPandANalogiesRoute = GamesPandANalogiesRouteImport.update({
+  id: '/games/pand-a-nalogies',
+  path: '/games/pand-a-nalogies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesKpopWordWarriorRoute = GamesKpopWordWarriorRouteImport.update({
+  id: '/games/kpop-word-warrior',
+  path: '/games/kpop-word-warrior',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
+  '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
+  '/games/readflex': typeof GamesReadflexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
+  '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
+  '/games/readflex': typeof GamesReadflexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
+  '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
+  '/games/readflex': typeof GamesReadflexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/games/kpop-word-warrior'
+    | '/games/pand-a-nalogies'
+    | '/games/readflex'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/games/kpop-word-warrior'
+    | '/games/pand-a-nalogies'
+    | '/games/readflex'
+  id:
+    | '__root__'
+    | '/'
+    | '/games/kpop-word-warrior'
+    | '/games/pand-a-nalogies'
+    | '/games/readflex'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GamesKpopWordWarriorRoute: typeof GamesKpopWordWarriorRoute
+  GamesPandANalogiesRoute: typeof GamesPandANalogiesRoute
+  GamesReadflexRoute: typeof GamesReadflexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +91,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/games/readflex': {
+      id: '/games/readflex'
+      path: '/games/readflex'
+      fullPath: '/games/readflex'
+      preLoaderRoute: typeof GamesReadflexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games/pand-a-nalogies': {
+      id: '/games/pand-a-nalogies'
+      path: '/games/pand-a-nalogies'
+      fullPath: '/games/pand-a-nalogies'
+      preLoaderRoute: typeof GamesPandANalogiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games/kpop-word-warrior': {
+      id: '/games/kpop-word-warrior'
+      path: '/games/kpop-word-warrior'
+      fullPath: '/games/kpop-word-warrior'
+      preLoaderRoute: typeof GamesKpopWordWarriorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GamesKpopWordWarriorRoute: GamesKpopWordWarriorRoute,
+  GamesPandANalogiesRoute: GamesPandANalogiesRoute,
+  GamesReadflexRoute: GamesReadflexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
