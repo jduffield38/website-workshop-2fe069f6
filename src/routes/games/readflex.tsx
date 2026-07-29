@@ -37,6 +37,7 @@ function ReadflexPage() {
         icon={icon}
         title="ReadFlex"
         tagline="Master Reading Comprehension and Boost Your Test Scores"
+        webUrl="https://readflex.vibeedge.app"
       />
 
       <section className="py-16">

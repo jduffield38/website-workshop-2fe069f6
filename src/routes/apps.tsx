@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Apple } from "lucide-react";
+import { ArrowRight, Apple, ExternalLink } from "lucide-react";
 import { apps } from "../lib/apps";
 
 export const Route = createFileRoute("/apps")({
@@ -69,7 +69,7 @@ function AppsPage() {
                 >
                   View details <ArrowRight className="h-4 w-4" />
                 </Link>
-                {a.appStoreUrl ? (
+                {a.appStoreUrl && (
                   <a
                     href={a.appStoreUrl}
                     target="_blank"
@@ -78,7 +78,18 @@ function AppsPage() {
                   >
                     <Apple className="h-4 w-4" /> App Store
                   </a>
-                ) : (
+                )}
+                {a.webUrl && (
+                  <a
+                    href={a.webUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 rounded-md bg-primary/10 text-primary border border-primary/30 px-5 py-2.5 text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition"
+                  >
+                    Launch web app <ExternalLink className="h-4 w-4" />
+                  </a>
+                )}
+                {!a.appStoreUrl && !a.webUrl && (
                   <span className="inline-flex items-center justify-center rounded-md border border-dashed border-border px-5 py-2.5 text-xs font-medium text-muted-foreground">
                     Coming soon
                   </span>

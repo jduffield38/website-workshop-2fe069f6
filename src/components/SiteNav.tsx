@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ExternalLink } from "lucide-react";
 import logo from "../assets/VElogo.png";
 
-const links = [
+type NavLink =
+  | { to: "/" | "/apps" | "/about" | "/contact"; label: string; external?: false }
+  | { href: string; label: string; external: true };
+
+const links: NavLink[] = [
   { to: "/", label: "Home" },
   { to: "/apps", label: "Apps" },
+  { href: "https://vocabflex.vibeedge.app", label: "VocabFlex", external: true },
+  { href: "https://readflex.vibeedge.app", label: "ReadFlex", external: true },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -70,16 +76,29 @@ export function SiteNav() {
           >
             <ul className="py-2 text-sm font-medium">
               {links.map((l) => (
-                <li key={l.to}>
-                  <Link
-                    to={l.to}
-                    onClick={() => setOpen(false)}
-                    activeOptions={{ exact: l.to === "/" }}
-                    activeProps={{ className: "text-primary bg-white/5" }}
-                    className="block px-5 py-3 hover:text-primary hover:bg-white/5 transition-colors"
-                  >
-                    {l.label}
-                  </Link>
+                <li key={l.external ? l.href : l.to}>
+                  {l.external ? (
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between gap-2 px-5 py-3 hover:text-primary hover:bg-white/5 transition-colors"
+                    >
+                      <span>{l.label}</span>
+                      <ExternalLink className="h-3.5 w-3.5 opacity-60" />
+                    </a>
+                  ) : (
+                    <Link
+                      to={l.to}
+                      onClick={() => setOpen(false)}
+                      activeOptions={{ exact: l.to === "/" }}
+                      activeProps={{ className: "text-primary bg-white/5" }}
+                      className="block px-5 py-3 hover:text-primary hover:bg-white/5 transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -88,15 +107,27 @@ export function SiteNav() {
 
         <ul className="hidden lg:flex items-center gap-8 text-sm font-medium">
           {links.map((l) => (
-            <li key={l.to}>
-              <Link
-                to={l.to}
-                activeOptions={{ exact: l.to === "/" }}
-                activeProps={{ className: "text-primary" }}
-                className="hover:text-primary transition-colors"
-              >
-                {l.label}
-              </Link>
+            <li key={l.external ? l.href : l.to}>
+              {l.external ? (
+                <a
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-primary transition-colors"
+                >
+                  {l.label}
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
+              ) : (
+                <Link
+                  to={l.to}
+                  activeOptions={{ exact: l.to === "/" }}
+                  activeProps={{ className: "text-primary" }}
+                  className="hover:text-primary transition-colors"
+                >
+                  {l.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -119,10 +150,21 @@ export function SiteFooter() {
           <h4 className="font-semibold mb-3 text-white/90">Explore</h4>
           <ul className="space-y-2 text-white/70">
             {links.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="hover:text-primary transition-colors">
-                  {l.label}
-                </Link>
+              <li key={l.external ? l.href : l.to}>
+                {l.external ? (
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link to={l.to} className="hover:text-primary transition-colors">
+                    {l.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
