@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, AtSign } from "lucide-react";
+import { Mail, AtSign, CheckCircle2, Loader2 } from "lucide-react";
+import { useState } from "react";
 
 const CONTACT_EMAIL = "contact@vibeedge.app";
-
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -21,7 +21,41 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
+type Status = "idle" | "sending" | "success" | "error";
+
 function ContactPage() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setStatus("sending");
+    setErrorMsg(null);
+    try {
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          message: data.get("message"),
+          botField: data.get("bot-field") || "",
+        }),
+      });
+      const json = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+      if (!res.ok || !json.ok) {
+        throw new Error(json.error || "Something went wrong. Please try again.");
+      }
+      setStatus("success");
+      form.reset();
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+    }
+  }
+
   return (
     <div>
       <header className="bg-[color:var(--brand-dark)] text-white pt-32 pb-16">
@@ -48,58 +82,81 @@ function ContactPage() {
               .
             </p>
           </div>
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            className="space-y-4 bg-card p-6 rounded-xl border border-border"
-          >
 
-            <input type="hidden" name="form-name" value="contact" />
-            <div className="hidden">
-              <label>
-                Don't fill this out: <input name="bot-field" />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-1">Name *</label>
-              <input
-                id="name"
-                name="name"
-                required
-                className="w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-1">Email *</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                className="w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-1">Message *</label>
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                required
-                className="w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-            </div>
-            <div className="text-center">
+          {status === "success" ? (
+            <div className="rounded-xl border border-border bg-card p-8 text-center">
+              <CheckCircle2 className="mx-auto h-12 w-12 text-primary mb-3" />
+              <h2 className="text-2xl font-bold mb-2">Message sent!</h2>
+              <p className="text-muted-foreground">
+                Thanks for reaching out — we'll get back to you at the email address you provided.
+              </p>
               <button
-                type="submit"
-                className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-semibold text-primary-foreground hover:opacity-90 transition"
+                type="button"
+                onClick={() => setStatus("idle")}
+                className="mt-6 inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent"
               >
-                Send Message
+                Send another message
               </button>
             </div>
-          </form>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 bg-card p-6 rounded-xl border border-border"
+            >
+              <div className="hidden" aria-hidden="true">
+                <label>
+                  Don't fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-1">Name *</label>
+                <input
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-1">Email *</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-1">Message *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={6}
+                  required
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+              {status === "error" && errorMsg ? (
+                <p className="text-sm text-destructive">{errorMsg}</p>
+              ) : null}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-semibold text-primary-foreground hover:opacity-90 transition disabled:opacity-60"
+                >
+                  {status === "sending" ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending…
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
+                </button>
+              </div>
+            </form>
+          )}
         </div>
       </section>
     </div>
