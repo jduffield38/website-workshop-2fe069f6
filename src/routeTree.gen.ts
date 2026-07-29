@@ -16,6 +16,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as GamesReadflexRouteImport } from './routes/games/readflex'
 import { Route as GamesPandANalogiesRouteImport } from './routes/games/pand-a-nalogies'
 import { Route as GamesKpopWordWarriorRouteImport } from './routes/games/kpop-word-warrior'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
@@ -52,6 +53,12 @@ const GamesKpopWordWarriorRoute = GamesKpopWordWarriorRouteImport.update({
   path: '/games/kpop-word-warrior',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +78,7 @@ export interface FileRoutesByTo {
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +89,7 @@ export interface FileRoutesById {
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +101,7 @@ export interface FileRouteTypes {
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
+    | '/lovable/email/transactional/preview'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +111,7 @@ export interface FileRouteTypes {
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
+    | '/lovable/email/transactional/preview'
   id:
     | '__root__'
     | '/'
@@ -109,6 +121,7 @@ export interface FileRouteTypes {
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
+    | '/lovable/email/transactional/preview'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +132,7 @@ export interface RootRouteChildren {
   GamesKpopWordWarriorRoute: typeof GamesKpopWordWarriorRoute
   GamesPandANalogiesRoute: typeof GamesPandANalogiesRoute
   GamesReadflexRoute: typeof GamesReadflexRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +186,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GamesKpopWordWarriorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +204,7 @@ const rootRouteChildren: RootRouteChildren = {
   GamesKpopWordWarriorRoute: GamesKpopWordWarriorRoute,
   GamesPandANalogiesRoute: GamesPandANalogiesRoute,
   GamesReadflexRoute: GamesReadflexRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
