@@ -76,16 +76,29 @@ export function SiteNav() {
           >
             <ul className="py-2 text-sm font-medium">
               {links.map((l) => (
-                <li key={l.to}>
-                  <Link
-                    to={l.to}
-                    onClick={() => setOpen(false)}
-                    activeOptions={{ exact: l.to === "/" }}
-                    activeProps={{ className: "text-primary bg-white/5" }}
-                    className="block px-5 py-3 hover:text-primary hover:bg-white/5 transition-colors"
-                  >
-                    {l.label}
-                  </Link>
+                <li key={l.external ? l.href : l.to}>
+                  {l.external ? (
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between gap-2 px-5 py-3 hover:text-primary hover:bg-white/5 transition-colors"
+                    >
+                      <span>{l.label}</span>
+                      <ExternalLink className="h-3.5 w-3.5 opacity-60" />
+                    </a>
+                  ) : (
+                    <Link
+                      to={l.to}
+                      onClick={() => setOpen(false)}
+                      activeOptions={{ exact: l.to === "/" }}
+                      activeProps={{ className: "text-primary bg-white/5" }}
+                      className="block px-5 py-3 hover:text-primary hover:bg-white/5 transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
