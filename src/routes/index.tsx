@@ -11,10 +11,10 @@ export const Route = createFileRoute("/")({
         content:
           "VibeEdge builds smart SAT, ACT, SSAT, and ISEE prep apps designed around how students actually learn.",
       },
-      { property: "og:title", content: "VibeEdge Learning" },
+      { property: "og:title", content: "VibeEdge Learning — Get the Edge. Own the Test." },
       {
         property: "og:description",
-        content: "Smart test prep apps that actually work with how students learn.",
+        content: "VibeEdge builds smart SAT, ACT, SSAT, and ISEE prep apps designed around how students actually learn.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

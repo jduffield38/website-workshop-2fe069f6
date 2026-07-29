@@ -79,16 +79,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "VibeEdge Learning — Smart test prep apps" },
+      { title: "VibeEdge Learning — Get the Edge. Own the Test." },
       {
         name: "description",
         content:
-          "VibeEdge builds SAT, ACT, SSAT, and ISEE prep apps designed around how students actually learn.",
+          "VibeEdge builds smart SAT, ACT, SSAT, and ISEE prep apps designed around how students actually learn.",
       },
-      { property: "og:title", content: "VibeEdge Learning" },
-      { property: "og:description", content: "Smart test prep apps that actually work with how students learn." },
+      { property: "og:title", content: "VibeEdge Learning — Get the Edge. Own the Test." },
+      { property: "og:description", content: "VibeEdge builds smart SAT, ACT, SSAT, and ISEE prep apps designed around how students actually learn." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "VibeEdge Learning — Get the Edge. Own the Test." },
+      { name: "twitter:description", content: "VibeEdge builds smart SAT, ACT, SSAT, and ISEE prep apps designed around how students actually learn." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e43643fc-9d07-4a5b-beda-da3736bd0e56" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e43643fc-9d07-4a5b-beda-da3736bd0e56" },
     ],
 
     links: [
@@ -96,7 +100,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
