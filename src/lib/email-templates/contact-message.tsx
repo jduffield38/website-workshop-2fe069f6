@@ -47,7 +47,7 @@ export const template = {
   subject: (data: Record<string, any>) =>
     `New contact form message${data?.name ? ` from ${data.name}` : ''}`,
   displayName: 'Contact form message',
-  to: 'contact@vibeedge.app',
+  to: 'contactus@vibeedge.app',
   previewData: {
     name: 'Jane Doe',
     email: 'jane@example.com',
