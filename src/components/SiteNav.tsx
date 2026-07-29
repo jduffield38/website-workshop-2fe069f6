@@ -107,15 +107,27 @@ export function SiteNav() {
 
         <ul className="hidden lg:flex items-center gap-8 text-sm font-medium">
           {links.map((l) => (
-            <li key={l.to}>
-              <Link
-                to={l.to}
-                activeOptions={{ exact: l.to === "/" }}
-                activeProps={{ className: "text-primary" }}
-                className="hover:text-primary transition-colors"
-              >
-                {l.label}
-              </Link>
+            <li key={l.external ? l.href : l.to}>
+              {l.external ? (
+                <a
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-primary transition-colors"
+                >
+                  {l.label}
+                  <ExternalLink className="h-3 w-3 opacity-60" />
+                </a>
+              ) : (
+                <Link
+                  to={l.to}
+                  activeOptions={{ exact: l.to === "/" }}
+                  activeProps={{ className: "text-primary" }}
+                  className="hover:text-primary transition-colors"
+                >
+                  {l.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -138,10 +150,21 @@ export function SiteFooter() {
           <h4 className="font-semibold mb-3 text-white/90">Explore</h4>
           <ul className="space-y-2 text-white/70">
             {links.map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="hover:text-primary transition-colors">
-                  {l.label}
-                </Link>
+              <li key={l.external ? l.href : l.to}>
+                {l.external ? (
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link to={l.to} className="hover:text-primary transition-colors">
+                    {l.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
