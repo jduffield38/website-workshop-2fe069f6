@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid } from "../../components/SiteChrome";
+import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid, OtherAppsSection } from "../../components/SiteChrome";
 import icon from "../../assets/readflex-icon.png";
 import shot1 from "../../assets/readflex1.jpg";
 import shot2 from "../../assets/readflex2.jpg";
@@ -85,6 +85,9 @@ function ReadflexPage() {
           </div>
         </div>
       </section>
+
+      <OtherAppsSection currentSlug="readflex" />
     </SiteChrome>
   );
 }
+

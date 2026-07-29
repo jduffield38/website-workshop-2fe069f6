@@ -9,11 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AppsRouteImport } from './routes/apps'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GamesReadflexRouteImport } from './routes/games/readflex'
 import { Route as GamesPandANalogiesRouteImport } from './routes/games/pand-a-nalogies'
 import { Route as GamesKpopWordWarriorRouteImport } from './routes/games/kpop-word-warrior'
 
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppsRoute = AppsRouteImport.update({
+  id: '/apps',
+  path: '/apps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +55,18 @@ const GamesKpopWordWarriorRoute = GamesKpopWordWarriorRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/apps': typeof AppsRoute
+  '/contact': typeof ContactRoute
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/apps': typeof AppsRoute
+  '/contact': typeof ContactRoute
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
@@ -50,6 +74,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/apps': typeof AppsRoute
+  '/contact': typeof ContactRoute
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
@@ -58,18 +85,27 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/apps'
+    | '/contact'
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/apps'
+    | '/contact'
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/apps'
+    | '/contact'
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
@@ -77,6 +113,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AppsRoute: typeof AppsRoute
+  ContactRoute: typeof ContactRoute
   GamesKpopWordWarriorRoute: typeof GamesKpopWordWarriorRoute
   GamesPandANalogiesRoute: typeof GamesPandANalogiesRoute
   GamesReadflexRoute: typeof GamesReadflexRoute
@@ -84,6 +123,27 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apps': {
+      id: '/apps'
+      path: '/apps'
+      fullPath: '/apps'
+      preLoaderRoute: typeof AppsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -117,6 +177,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AppsRoute: AppsRoute,
+  ContactRoute: ContactRoute,
   GamesKpopWordWarriorRoute: GamesKpopWordWarriorRoute,
   GamesPandANalogiesRoute: GamesPandANalogiesRoute,
   GamesReadflexRoute: GamesReadflexRoute,

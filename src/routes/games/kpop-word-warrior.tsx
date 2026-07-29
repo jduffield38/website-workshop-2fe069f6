@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid } from "../../components/SiteChrome";
+import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid, OtherAppsSection } from "../../components/SiteChrome";
 import icon from "../../assets/kpop-icon.png";
 import shot1 from "../../assets/kpop1.jpg";
 import shot2 from "../../assets/kpop2.jpg";
@@ -80,6 +80,9 @@ function KpopPage() {
           </a>
         </div>
       </section>
+
+      <OtherAppsSection currentSlug="kpop-word-warrior" />
     </SiteChrome>
   );
 }
+

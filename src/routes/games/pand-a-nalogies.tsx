@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid } from "../../components/SiteChrome";
+import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid, OtherAppsSection } from "../../components/SiteChrome";
 import icon from "../../assets/panda-icon.png";
 import shot1 from "../../assets/panda1.jpg";
 import shot2 from "../../assets/panda2.jpg";
@@ -76,6 +76,9 @@ function PandaPage() {
           </ul>
         </div>
       </section>
+
+      <OtherAppsSection currentSlug="pand-a-nalogies" />
     </SiteChrome>
   );
 }
+
