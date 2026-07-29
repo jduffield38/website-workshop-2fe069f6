@@ -9,7 +9,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <nav className="fixed top-0 inset-x-0 z-50 bg-[color:var(--brand-dark)] text-white">
         <div className="container mx-auto flex items-center justify-between px-5 py-3">
           <a href="/" className="flex items-center">
-            <img src={logo} alt="VibeEdge Learning" className="h-10 w-auto max-w-[180px]" />
+            <img src={logo} alt="VibeEdge Learning" className="h-20 w-auto max-w-[360px]" />
           </a>
           <button
             className="lg:hidden p-2"
