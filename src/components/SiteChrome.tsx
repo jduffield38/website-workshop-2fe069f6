@@ -1,47 +1,11 @@
-import { useState, type ReactNode } from "react";
-import { Menu } from "lucide-react";
-import logo from "../assets/VElogo.png";
+import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
+import { apps, type AppInfo } from "../lib/apps";
 
 export function SiteChrome({ children }: { children: ReactNode }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <nav className="fixed top-0 inset-x-0 z-50 bg-[color:var(--brand-dark)] text-white">
-        <div className="container mx-auto flex items-center justify-between px-5 py-3">
-          <a href="/" className="flex items-center">
-            <img src={logo} alt="VibeEdge Learning" className="h-20 w-auto max-w-[360px]" />
-          </a>
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle navigation"
-          >
-            <Menu className="h-6 w-6" />
-          </button>
-          <ul className="hidden lg:flex items-center gap-8 text-sm font-medium">
-            <li><a href="/#header" className="hover:text-primary">Home</a></li>
-            <li><a href="/#about" className="hover:text-primary">About</a></li>
-            <li><a href="/#products" className="hover:text-primary">Products</a></li>
-            <li><a href="/#contact" className="hover:text-primary">Contact</a></li>
-          </ul>
-        </div>
-        {open && (
-          <ul className="lg:hidden px-5 pb-4 space-y-3 text-sm font-medium">
-            <li><a href="/#header" onClick={() => setOpen(false)}>Home</a></li>
-            <li><a href="/#about" onClick={() => setOpen(false)}>About</a></li>
-            <li><a href="/#products" onClick={() => setOpen(false)}>Products</a></li>
-            <li><a href="/#contact" onClick={() => setOpen(false)}>Contact</a></li>
-          </ul>
-        )}
-      </nav>
-      <main className="flex-1">{children}</main>
-      <footer className="bg-[color:var(--brand-dark)] text-white py-6">
-        <div className="container mx-auto px-5 text-center text-sm">
-          Copyright © VibeEdge Learning 2025
-        </div>
-      </footer>
-    </div>
-  );
+  // Nav + footer now live in __root.tsx. This wrapper only handles top padding
+  // so content clears the fixed nav.
+  return <div className="pt-24">{children}</div>;
 }
 
 export function GameHero({
@@ -56,7 +20,7 @@ export function GameHero({
   appStoreUrl?: string;
 }) {
   return (
-    <section className="bg-[color:var(--brand-dark)] text-white pt-28 pb-16">
+    <section className="bg-[color:var(--brand-dark)] text-white pt-8 pb-16">
       <div className="container mx-auto px-5 text-center">
         <img
           src={icon}
@@ -110,9 +74,39 @@ export function ScreenshotGrid({ shots }: { shots: { src: string; caption: strin
                 src={s.src}
                 alt={s.caption}
                 className="rounded-2xl shadow-lg mx-auto max-h-[520px] w-auto"
+                loading="lazy"
               />
               <figcaption className="mt-3 font-semibold">{s.caption}</figcaption>
             </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function OtherAppsSection({ currentSlug }: { currentSlug: string }) {
+  const others: AppInfo[] = apps.filter((a) => a.slug !== currentSlug);
+  if (others.length === 0) return null;
+  return (
+    <section className="py-16 bg-secondary border-t border-border">
+      <div className="container mx-auto px-5 max-w-5xl">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-10">
+          Explore our other apps
+        </h2>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {others.map((a) => (
+            <Link
+              key={a.slug}
+              to={a.to}
+              className="group flex items-center gap-4 rounded-2xl bg-card border border-border p-5 hover:border-primary transition"
+            >
+              <img src={a.icon} alt={`${a.title} icon`} className="h-16 w-16 rounded-xl shadow" />
+              <div className="text-left">
+                <h3 className="font-bold group-hover:text-primary transition">{a.title}</h3>
+                <p className="text-sm text-muted-foreground">{a.tagline}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
