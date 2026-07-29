@@ -40,7 +40,7 @@ export const Route = createFileRoute('/api/public/contact')({
         try {
           const result = await sendTemplateEmail(
             'contact-message',
-            'contact@vibeedge.app',
+            'contactus@vibeedge.app',
             {
               templateData: { name, email, message },
               replyTo: email,
