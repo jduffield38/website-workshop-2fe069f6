@@ -101,6 +101,26 @@ function AppsPage() {
           ))}
         </div>
       </section>
+
+      <section className="pb-16">
+        <div className="container mx-auto px-5 max-w-5xl">
+          <div className="rounded-2xl border border-border bg-secondary p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 justify-between">
+            <div>
+              <h2 className="text-xl font-bold mb-1">Free study guide: SSAT analogies</h2>
+              <p className="text-muted-foreground text-sm">
+                The 12 relationship types, the bridge sentence method, and practice questions with
+                full explanations.
+              </p>
+            </div>
+            <Link
+              to="/guides/ssat-analogies"
+              className="inline-flex flex-none items-center justify-center gap-1 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:opacity-90 transition"
+            >
+              Read the guide <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
