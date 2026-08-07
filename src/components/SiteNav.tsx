@@ -12,6 +12,7 @@ const links: NavLink[] = [
   { to: "/apps", label: "Apps" },
   { href: "https://vocabflex.vibeedge.app", label: "VocabFlex", external: true },
   { href: "https://readflex.vibeedge.app", label: "ReadFlex", external: true },
+  { href: "https://kpopww.vibeedge.app", label: "K-POP Word Warrior", external: true },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
