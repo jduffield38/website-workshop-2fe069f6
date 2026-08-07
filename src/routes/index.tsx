@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Smartphone, GraduationCap, RefreshCcwDot } from "lucide-react";
 import { apps } from "../lib/apps";
+import { SITE_URL, jsonLdScript } from "../lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -18,6 +19,14 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      jsonLdScript({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "VibeEdge Learning",
+        url: SITE_URL,
+      }),
     ],
   }),
   component: Home,

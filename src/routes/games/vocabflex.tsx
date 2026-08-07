@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { appJsonLd } from "../../lib/seo";
 import {
   SiteChrome,
   GameHero,
@@ -25,6 +26,7 @@ export const Route = createFileRoute("/games/vocabflex")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: appJsonLd("vocabflex"),
   }),
   component: VocabflexPage,
 });

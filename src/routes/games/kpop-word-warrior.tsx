@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { appJsonLd } from "../../lib/seo";
 import { ExternalLink } from "lucide-react";
 import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid, OtherAppsSection } from "../../components/SiteChrome";
 import icon from "../../assets/kpop-icon.png";
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/games/kpop-word-warrior")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: appJsonLd("kpop-word-warrior"),
   }),
   component: KpopPage,
 });

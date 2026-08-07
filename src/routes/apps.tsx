@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { breadcrumbLd } from "../lib/seo";
 import { ArrowRight, Apple, ExternalLink } from "lucide-react";
 import { apps } from "../lib/apps";
 
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/apps")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [breadcrumbLd([{ name: "Home", path: "/" }, { name: "Apps", path: "/apps" }])],
   }),
   component: AppsPage,
 });

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { appJsonLd } from "../../lib/seo";
 import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid, OtherAppsSection } from "../../components/SiteChrome";
 import icon from "../../assets/readflex-icon.png";
 import shot1 from "../../assets/readflex1.jpg";
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/games/readflex")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: appJsonLd("readflex"),
   }),
   component: ReadflexPage,
 });

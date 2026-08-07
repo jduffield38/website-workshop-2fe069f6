@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AppsRouteImport } from './routes/apps'
 import { Route as AboutRouteImport } from './routes/about'
@@ -20,6 +21,11 @@ import { Route as GamesKpopWordWarriorRouteImport } from './routes/games/kpop-wo
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/apps': typeof AppsRoute
   '/contact': typeof ContactRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/apps': typeof AppsRoute
   '/contact': typeof ContactRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/apps': typeof AppsRoute
   '/contact': typeof ContactRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/games/kpop-word-warrior': typeof GamesKpopWordWarriorRoute
   '/games/pand-a-nalogies': typeof GamesPandANalogiesRoute
   '/games/readflex': typeof GamesReadflexRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/apps'
     | '/contact'
+    | '/sitemap.xml'
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/apps'
     | '/contact'
+    | '/sitemap.xml'
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/apps'
     | '/contact'
+    | '/sitemap.xml'
     | '/games/kpop-word-warrior'
     | '/games/pand-a-nalogies'
     | '/games/readflex'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AppsRoute: typeof AppsRoute
   ContactRoute: typeof ContactRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   GamesKpopWordWarriorRoute: typeof GamesKpopWordWarriorRoute
   GamesPandANalogiesRoute: typeof GamesPandANalogiesRoute
   GamesReadflexRoute: typeof GamesReadflexRoute
@@ -163,6 +176,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AppsRoute: AppsRoute,
   ContactRoute: ContactRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   GamesKpopWordWarriorRoute: GamesKpopWordWarriorRoute,
   GamesPandANalogiesRoute: GamesPandANalogiesRoute,
   GamesReadflexRoute: GamesReadflexRoute,
