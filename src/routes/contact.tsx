@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { breadcrumbLd } from "../lib/seo";
 import { Mail, AtSign, CheckCircle2, Loader2 } from "lucide-react";
 import { useState } from "react";
 
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [breadcrumbLd([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }])],
   }),
   component: ContactPage,
 });
