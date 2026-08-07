@@ -19,6 +19,20 @@ export const Route = createFileRoute("/about")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [
+      jsonLdScript({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "VibeEdge Learning",
+        url: SITE_URL,
+        logo: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/e43643fc-9d07-4a5b-beda-da3736bd0e56",
+        email: "contactus@vibeedge.app",
+      }),
+      breadcrumbLd([
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+      ]),
+    ],
   }),
   component: AboutPage,
 });
