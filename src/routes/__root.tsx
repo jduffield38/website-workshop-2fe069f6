@@ -79,6 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "uMyq5T3x3OUYtYfoLt88Uf7rBvl0Kjf2gapz82N8cBw" },
       { title: "VibeEdge Learning — Get the Edge. Own the Test." },
       {
         name: "description",
