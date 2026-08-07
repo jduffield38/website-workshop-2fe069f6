@@ -18,6 +18,7 @@ const entries: SitemapEntry[] = [
   { path: "/games/readflex", changefreq: "monthly", priority: "0.8" },
   { path: "/games/kpop-word-warrior", changefreq: "monthly", priority: "0.8" },
   { path: "/games/pand-a-nalogies", changefreq: "monthly", priority: "0.8" },
+  { path: "/guides/ssat-analogies", changefreq: "monthly", priority: "0.7" },
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({
