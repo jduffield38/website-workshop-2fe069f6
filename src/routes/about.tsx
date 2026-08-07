@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Smartphone, GraduationCap, RefreshCcwDot, Sparkles, MapPin, HeartHandshake } from "lucide-react";
+import { SITE_URL, jsonLdScript, breadcrumbLd } from "../lib/seo";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
