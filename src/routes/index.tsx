@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Smartphone, GraduationCap, RefreshCcwDot } from "lucide-react";
 import { apps } from "../lib/apps";
+import { SITE_URL, jsonLdScript } from "../lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
