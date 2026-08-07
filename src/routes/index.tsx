@@ -20,6 +20,14 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [
+      jsonLdScript({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "VibeEdge Learning",
+        url: SITE_URL,
+      }),
+    ],
   }),
   component: Home,
 });
