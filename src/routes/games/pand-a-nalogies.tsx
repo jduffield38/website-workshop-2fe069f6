@@ -76,6 +76,17 @@ function PandaPage() {
             <li><strong className="text-foreground">Critical Thinking:</strong> Applying abstract concepts to new situations</li>
             <li><strong className="text-foreground">Problem-Solving:</strong> Systematic approach to complex questions</li>
           </ul>
+          <p className="text-muted-foreground mt-6">
+            New to the format?{" "}
+            <Link
+              to="/guides/ssat-analogies"
+              className="text-primary font-semibold underline underline-offset-4"
+            >
+              Read our complete SSAT analogies guide
+            </Link>{" "}
+            — relationship types, the bridge sentence method, and practice questions with
+            explanations.
+          </p>
         </div>
       </section>
 
