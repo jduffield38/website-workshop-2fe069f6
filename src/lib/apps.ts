@@ -49,6 +49,7 @@ export const apps: AppInfo[] = [
     body: "Nearly 800 high-impact test words taught through flashcards, synonym matching, fill-in-the-blank, and word-root games with a K-Pop aesthetic.",
     tests: ["SSAT", "ISEE"],
     appStoreUrl: "https://apps.apple.com/us/app/kpop-word-warrior/id6751727701",
+    webUrl: "https://kpopww.vibeedge.app",
   },
   {
     slug: "pand-a-nalogies",

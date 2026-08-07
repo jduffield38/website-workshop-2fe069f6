@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ExternalLink } from "lucide-react";
 import { SiteChrome, GameHero, FeatureGrid, ScreenshotGrid, OtherAppsSection } from "../../components/SiteChrome";
 import icon from "../../assets/kpop-icon.png";
 import shot1 from "../../assets/kpop1.jpg";
@@ -40,6 +41,7 @@ function KpopPage() {
         title="K-POP Word Warrior"
         tagline="Master SSAT & ISEE Vocabulary with K-Pop Style!"
         appStoreUrl="https://apps.apple.com/us/app/kpop-word-warrior/id6751727701"
+        webUrl="https://kpopww.vibeedge.app"
       />
 
       <section className="py-16">
@@ -69,15 +71,25 @@ function KpopPage() {
       <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-5 max-w-2xl text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Boost Your Vocabulary?</h2>
-          <p className="mb-6">Download K-POP Word Warrior today and turn test prep into an exciting journey.</p>
-          <a
-            href="https://apps.apple.com/us/app/kpop-word-warrior/id6751727701"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-[color:var(--brand-dark)] px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition"
-          >
-            Download on the App Store
-          </a>
+          <p className="mb-6">Play K-POP Word Warrior right in your browser, or download the iOS app — turn test prep into an exciting journey.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href="https://kpopww.vibeedge.app"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--brand-dark)] px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition"
+            >
+              Launch web app <ExternalLink className="h-4 w-4" />
+            </a>
+            <a
+              href="https://apps.apple.com/us/app/kpop-word-warrior/id6751727701"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-md border border-white/30 px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition"
+            >
+              Download on the App Store
+            </a>
+          </div>
         </div>
       </section>
 
