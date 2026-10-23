@@ -9,32 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AppsRouteImport } from './routes/apps'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as GuidesSsatAnalogiesRouteImport } from './routes/guides/ssat-analogies'
-import { Route as GamesVocabflexRouteImport } from './routes/games/vocabflex'
-import { Route as GamesReadflexRouteImport } from './routes/games/readflex'
-import { Route as GamesPandANalogiesRouteImport } from './routes/games/pand-a-nalogies'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AppsRouteImport } from './routes/apps'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as GamesKpopWordWarriorRouteImport } from './routes/games/kpop-word-warrior'
+import { Route as GamesPandANalogiesRouteImport } from './routes/games/pand-a-nalogies'
+import { Route as GamesReadflexRouteImport } from './routes/games/readflex'
+import { Route as GamesVocabflexRouteImport } from './routes/games/vocabflex'
+import { Route as GuidesSsatAnalogiesRouteImport } from './routes/guides/ssat-analogies'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppsRoute = AppsRouteImport.update({
-  id: '/apps',
-  path: '/apps',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -42,24 +32,24 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AppsRoute = AppsRouteImport.update({
+  id: '/apps',
+  path: '/apps',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GuidesSsatAnalogiesRoute = GuidesSsatAnalogiesRouteImport.update({
-  id: '/guides/ssat-analogies',
-  path: '/guides/ssat-analogies',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GamesVocabflexRoute = GamesVocabflexRouteImport.update({
-  id: '/games/vocabflex',
-  path: '/games/vocabflex',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GamesReadflexRoute = GamesReadflexRouteImport.update({
-  id: '/games/readflex',
-  path: '/games/readflex',
+const GamesKpopWordWarriorRoute = GamesKpopWordWarriorRouteImport.update({
+  id: '/games/kpop-word-warrior',
+  path: '/games/kpop-word-warrior',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamesPandANalogiesRoute = GamesPandANalogiesRouteImport.update({
@@ -67,9 +57,19 @@ const GamesPandANalogiesRoute = GamesPandANalogiesRouteImport.update({
   path: '/games/pand-a-nalogies',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GamesKpopWordWarriorRoute = GamesKpopWordWarriorRouteImport.update({
-  id: '/games/kpop-word-warrior',
-  path: '/games/kpop-word-warrior',
+const GamesReadflexRoute = GamesReadflexRouteImport.update({
+  id: '/games/readflex',
+  path: '/games/readflex',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesVocabflexRoute = GamesVocabflexRouteImport.update({
+  id: '/games/vocabflex',
+  path: '/games/vocabflex',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSsatAnalogiesRoute = GuidesSsatAnalogiesRouteImport.update({
+  id: '/guides/ssat-analogies',
+  path: '/guides/ssat-analogies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
@@ -189,25 +189,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/apps': {
-      id: '/apps'
-      path: '/apps'
-      fullPath: '/apps'
-      preLoaderRoute: typeof AppsRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -217,32 +203,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/apps': {
+      id: '/apps'
+      path: '/apps'
+      fullPath: '/apps'
+      preLoaderRoute: typeof AppsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/guides/ssat-analogies': {
-      id: '/guides/ssat-analogies'
-      path: '/guides/ssat-analogies'
-      fullPath: '/guides/ssat-analogies'
-      preLoaderRoute: typeof GuidesSsatAnalogiesRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/games/vocabflex': {
-      id: '/games/vocabflex'
-      path: '/games/vocabflex'
-      fullPath: '/games/vocabflex'
-      preLoaderRoute: typeof GamesVocabflexRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/games/readflex': {
-      id: '/games/readflex'
-      path: '/games/readflex'
-      fullPath: '/games/readflex'
-      preLoaderRoute: typeof GamesReadflexRouteImport
+    '/games/kpop-word-warrior': {
+      id: '/games/kpop-word-warrior'
+      path: '/games/kpop-word-warrior'
+      fullPath: '/games/kpop-word-warrior'
+      preLoaderRoute: typeof GamesKpopWordWarriorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/games/pand-a-nalogies': {
@@ -252,11 +238,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GamesPandANalogiesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/games/kpop-word-warrior': {
-      id: '/games/kpop-word-warrior'
-      path: '/games/kpop-word-warrior'
-      fullPath: '/games/kpop-word-warrior'
-      preLoaderRoute: typeof GamesKpopWordWarriorRouteImport
+    '/games/readflex': {
+      id: '/games/readflex'
+      path: '/games/readflex'
+      fullPath: '/games/readflex'
+      preLoaderRoute: typeof GamesReadflexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games/vocabflex': {
+      id: '/games/vocabflex'
+      path: '/games/vocabflex'
+      fullPath: '/games/vocabflex'
+      preLoaderRoute: typeof GamesVocabflexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/ssat-analogies': {
+      id: '/guides/ssat-analogies'
+      path: '/guides/ssat-analogies'
+      fullPath: '/guides/ssat-analogies'
+      preLoaderRoute: typeof GuidesSsatAnalogiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/contact': {
