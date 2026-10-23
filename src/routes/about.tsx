@@ -16,9 +16,11 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "The mission, story, and build philosophy behind VibeEdge Learning.",
       },
+      { property: "og:url", content: "https://vibeedge.app/about" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://vibeedge.app/about" }],
     scripts: [
       jsonLdScript({
         "@context": "https://schema.org",
