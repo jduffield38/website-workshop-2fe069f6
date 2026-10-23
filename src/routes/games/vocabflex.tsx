@@ -23,9 +23,11 @@ export const Route = createFileRoute("/games/vocabflex")({
         content:
           "Interactive SSAT vocabulary practice with flashcards, quizzes, roots, and analogies — right in your browser.",
       },
+      { property: "og:url", content: "https://vibeedge.app/games/vocabflex" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://vibeedge.app/games/vocabflex" }],
     scripts: appJsonLd("vocabflex"),
   }),
   component: VocabflexPage,
